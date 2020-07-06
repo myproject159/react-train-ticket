@@ -94,6 +94,7 @@ function TodoList(){
         <div className="todo-list">
             <Control addTodo = {addTodo}/>
             <Todos removeTodo = {removeTodo} toggleTodo = {toggleTodo } todos={todos}/>
+            <div>test123</div>
         </div>
     )
 }
