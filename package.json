@@ -70,15 +70,11 @@
     "format": "prettier src/**/*.{js,jsx,css,md} --write && eslint src/**/*.{jsx,js} --fix"
   },
   "eslintConfig": {
-    "extends": [
-      "eslint:recommended",
-      "react-app"
-    ],
+    "extends": "react-app",
     "rules": {
-      "react/jsx-indent": [
-        "error",
-        4
-      ]
+      "no-undef": "off",
+      "no-restricted-globals": "off",
+      "no-unused-vars": "off"
     }
   },
   "husky": {

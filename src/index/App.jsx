@@ -10,11 +10,12 @@ import Journey from "./Journey.jsx";
 import Submit from "./Submit.jsx";
 import CitySelector from "../common/CitySelector.jsx";
 
-import { 
-  exchangeFromTo, 
-  showCitySelector, 
+import {
+  exchangeFromTo,
+  showCitySelector,
   hideCitySelector,
-  fetchCityData 
+  fetchCityData,
+  setSelectedCity
 } from "./actions";
 
 function App(props) {
@@ -29,7 +30,6 @@ function App(props) {
   const onBack = useCallback(() => {
     window.history.back();
   }, []);
-
   const cbs = useMemo(() => {
     return bindActionCreators(
       {
@@ -44,31 +44,32 @@ function App(props) {
     return bindActionCreators(
       {
         onBack: hideCitySelector,
-        fetchCityData
+        fetchCityData,
+        onSelect: setSelectedCity
       },
       dispatch
     );
   }, []);
 
   return (
-      <div>
-          <div className="header-wrapper">
-              <Header title="火车票" onBack={onBack} />
-          </div>
-          <form className="form">
-              <Journey from={from} to={to} {...cbs} />
-              <DepartDate />
-              <HighSpeed />
-              <Submit />
-
-              <CitySelector
-                  show={isCitySelectorVisible}
-                  cityData={cityData}
-                  isLoading={isLoadingCityData}
-                  {...citySelectorCbs}
-                />
-          </form>
+    <div>
+      <div className="header-wrapper">
+        <Header title="火车票" onBack={onBack} />
       </div>
+      <form className="form">
+        <Journey from={from} to={to} {...cbs} />
+        <DepartDate />
+        <HighSpeed />
+        <Submit />
+
+        <CitySelector
+          show={isCitySelectorVisible}
+          cityData={cityData}
+          isLoading={isLoadingCityData}
+          {...citySelectorCbs}
+        />
+      </form>
+    </div>
   );
 }
 
